@@ -1,0 +1,20 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a routerLink="./" class="navbar-brand">Event Schedular</a>
+          <div class="d-flex">
+            @if(isUserLoggedIn){
+                <a routerLink="/" class="btn btn-sm btn-primary mx-2">Home</a>                
+                <a routerLink="/display-data" class="btn btn-sm btn-primary mx-2">Display Event</a>                
+                <a routerLink="/add-data" class="btn btn-sm btn-primary mx-2" (click)="newData($event)">Add Event</a>
+                <a routerLink="/contact-page" class="btn btn-sm btn-primary mx-2">Contact Us</a>                
+                <a (click)="logout()" class="btn btn-sm btn-primary">Logout</a>    
+            }
+            @else{  
+                <a routerLink="/login" class="btn btn-sm btn-outline-primary mx-2">Login</a>
+                <a routerLink="/register" class="btn btn-sm btn-primary">Register</a>
+            }
+            </div>
+        </div>
+      </nav>
+</header>

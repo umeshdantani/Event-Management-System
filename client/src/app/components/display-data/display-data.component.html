@@ -1,0 +1,62 @@
+<main>
+    <div class="container pt-4">
+        <h2 class="mb-3">Events</h2>
+        <table class="table" id="table">
+            <thead>
+                <tr>
+                    <!-- <th>ID</th> -->
+                    <th>Event Name</th>
+                    <th>Event Description</th>
+                    <th>Attendee Count</th>
+                    <th>Categories</th>
+                    <th>Event Type</th>
+                    <th>Venue Type</th>
+                    <th>Event Details</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="table1">
+                @for (event of events; track event._id) {
+                    <tr>
+                        <!-- <td>{{event._id}}</td> -->
+                        <td>{{event.eventName}}</td>
+                        <td>{{event.eventDescription}}</td>
+                        <td>{{event.attendeeCount}}</td>
+                        <td>{{event.Categories}}</td>
+                        <td>{{event.eventType}}</td>
+                        <td>{{event.venueType}}</td>
+                        <td>
+                            <div>{{event.eventDetailsData.eventDetailDate}}</div>
+                            <div>{{event.eventDetailsData.eventDetailEventName}}</div>
+                            <div>{{event.eventDetailsData.eventDetailEventLocation}}</div>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-primary mx-2" (click)="doUpdate(event)">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger" (click)="doDelete(event)">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                } @empty {
+                    <tr>
+                        <td colspan="9">No Events Found</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <br><br>
+
+        <b>
+            <p>Total expenditure Events: <span id="total">{{events.length}}</span></p>
+        </b>
+        <b>
+            <p>Average Data of Attendee Counts <span id="average">{{avgAttendeeCount}}</span></p>
+        </b>
+
+        <br><br>
+
+    </div>
+</main>

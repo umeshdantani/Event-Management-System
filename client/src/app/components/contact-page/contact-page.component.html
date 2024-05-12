@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="codecell, tsec, contact, contact us, Umesh Dantani, html, css, js, vanilla css">
+    <meta name="description" content="A static contact us page for TSEC CodeCell by Umesh Dantani">
+    <meta name="author" content="Umesh Dantani">
+
+    <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono&display=swap" rel="stylesheet">
+
+    <script>
+        const dropdown = document.querySelector(".dropdown");
+        const account = document.querySelector(".account");
+
+        account.addEventListener
+            (
+                "click",
+                (event) => {
+                    dropdown.classList.toggle("hide");
+                    event.stopPropagation();
+                }
+            );
+
+        window.addEventListener
+            (
+                "click",
+                () => {
+                    dropdown.classList.add("hide");
+                }
+            );
+    </script>
+    <script>
+        const ul = document.querySelector(".navbar-main-ul");
+        const burger_menu = document.querySelector(".burger-menu");
+
+        burger_menu.addEventListener
+            (
+                "click",
+                (event) => {
+                    ul.classList.toggle("hide-burger-menu");
+                    event.stopPropagation();
+                }
+            );
+
+        window.addEventListener
+            (
+                "click",
+                () => {
+                    ul.classList.add("hide-burger-menu");
+                }
+            );
+    </script>
+
+    <title>TSEC CodeCell</title>
+</head>
+
+<body>
+    <nav class="navbar">
+
+        <div class="right-side">
+
+            <div class="dropdown hide">
+                <ul>
+                    <a href="#">
+                        <li>Your profile</li>
+                    </a>
+                    <a href="#">
+                        <li>Settings</li>
+                    </a>
+                    <a href="#">
+                        <li>Log Out</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="title">Contact us</div>
+        <div class="title-info">We'll get back to you soon!</div>
+
+        <form action="" method="" class="form">
+            <div class="input-group">
+                <input type="text" name="first_name" id="first-name" placeholder="First name" required>
+                <label for="first-name">First name</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" name="last_name" id="last-name" placeholder="Last Name" required>
+                <label for="last-name">Last name</label>
+            </div>
+
+            <div class="input-group">
+                <input type="email" name="e-mail" id="e-mail" placeholder="e-mail" required>
+                <label for="e-mail">e-mail</label>
+            </div>
+
+            <div class="textarea-group">
+                <input type="text" name="message" id="message" placeholder="Message" email required>
+                <label for="message">Message</label>
+            </div>
+
+            <div class="button-div">
+                <button type="submit">Send</button>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <a href="https://www.facebook.com/profile.php?id=100040524136704" target="_blank"><img class="social-media-img" src="./../../../assets/contact/facebook.svg"
+                alt="Facebook"></a>
+        <a href="https://github.com/umeshdantani/" target="_blank"><img class="social-media-img" src="./../../../assets/contact/github.svg"
+                alt="GitHub"></a>
+        <a href="https://www.instagram.com/umesh___2002/" target="_blank"><img class="social-media-img" src="./../../../assets/contact/instagram.svg"
+                alt="Instagram"></a>
+        <a href="https://www.linkedin.com/in/umesh-rajeshbhai-803123252?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app " target="_blank"><img class="social-media-img" src="./../../../assets/contact/linkedin.svg"
+                alt="LinkedIn"></a>
+        <a href="https://twitter.com/UmeshRajes11787" target="_blank"><img class="social-media-img" src="./../../../assets/contact/twitter.svg"
+                alt="Twitter"></a>
+        <a href="https://www.youtube.com/channel/UCE231NsanbzXFaTxYgI0yZg" target="_blank"><img class="social-media-img" src="./../../../assets/contact/youtube.svg"
+                alt="YouTube"></a>
+    </footer>
+</body>
+
+</html>

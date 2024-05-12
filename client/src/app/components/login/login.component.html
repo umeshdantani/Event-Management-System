@@ -1,0 +1,27 @@
+<div class="login-container">
+    <div class="login-form">
+        <h3 class="text-center my-3">Login</h3>
+        <div class="form-grp">
+            <label for="username">User Email : </label>
+            <input ngModel type="text" name="username" class="form-control" #username="ngModel" [(ngModel)]="usename" />
+            <div class="error">{{errorMsgUserName}}</div>
+        </div>
+        <div class="form-grp">
+            <label for="password">Password : </label>
+            <input ngModel type="password" name="password" class="form-control" [(ngModel)]="password" />
+            <div class="error">{{errorMsgUserPassword}}</div>
+        </div>
+        <!-- <div class="btn-container">
+            <button class="btn btn-dark" (click)="login()">Login</button>
+            <div class="errorMsg">{{errorMsg}}</div>
+        </div> -->
+    
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
+          </div>
+         
+          <div class="my-3 text-center">
+            <p>Don't have an account? <a routerLink="/register">Register</a></p>
+          </div>
+    </div>
+</div>

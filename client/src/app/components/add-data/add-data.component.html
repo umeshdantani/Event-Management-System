@@ -1,0 +1,143 @@
+<main>
+    <div class="container pt-4 pb-5">
+        <h2 class="mb-3">Enter Your Event</h2>
+        <div id="formStyle" class="login-container">
+            <form #myForm="ngForm" (ngSubmit)="myForm.form.valid && onSubmit()" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label for="eventName">Event Name:</label>
+                    <input type="text" name="eventName" class="form-control" id="eventName"
+                        placeholder="Enter Your Event Name" [(ngModel)]="eventDetails.eventName" #eventName="ngModel"
+                        required />
+                    @if((eventName.touched || myForm.submitted) && eventName.errors?.['required']){
+                    <small>Event name is required</small>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label for="eventDescription">Event Description:</label>
+                    <textarea type="text" name="eventDescription" class="form-control" id="eventDescription"
+                        placeholder="Enter Your Event Description" [(ngModel)]="eventDetails.eventDescription"
+                        #eventDescription="ngModel" required></textarea>
+                    @if((eventDescription.touched || myForm.submitted) && eventDescription.errors?.['required']){
+                    <small>Event Description is Requied!!</small>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label for="attendeeCount">Attendee Count:</label>
+                    <input type="number" name="attendeeCount" class="form-control" id="attendeeCount"
+                        placeholder="Enter Your AttendeeCount" [(ngModel)]="eventDetails.attendeeCount"
+                        #attendeeCount="ngModel" required />
+                    @if((attendeeCount.touched || myForm.submitted) && attendeeCount.errors?.['required']){
+                    <small>attendee Count is Requied!!</small>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label for="">Categories:</label>
+                    <label>
+                        <input type="radio" name="categories" value="News" class="categories"
+                            [(ngModel)]="eventDetails.Categories" required #categories="ngModel">
+                        News Event
+                    </label>
+                    <label>
+                        <input type="radio" name="categories" value="Business" class="categories"
+                            [(ngModel)]="eventDetails.Categories" required #categories="ngModel">
+                        Business Event
+                    </label>
+                    <label>
+                        <input type="radio" name="categories" value="Wedding" class="categories"
+                            [(ngModel)]="eventDetails.Categories" required #categories="ngModel">
+                        Wedding Event
+                    </label>
+                    <label>
+                        <input type="radio" name="categories" value="kiteFestival" class="categories"
+                            [(ngModel)]="eventDetails.Categories" required #categories="ngModel">
+                        Kite Festival Event
+                    </label>
+                    <label>
+                        <input type="radio" name="categories" value="Diwali" class="categories"
+                            [(ngModel)]="eventDetails.Categories" required>
+                        Diwali Event
+                    </label>
+                    <label>
+                        <input type="radio" name="categories" value="Holi" class="categories"
+                            [(ngModel)]="eventDetails.Categories" required>
+                            Holi Event
+                    </label>
+                    <label>
+                        <input type="radio" name="categories" value="Birthday" class="categories"
+                            [(ngModel)]="eventDetails.Categories" required>
+                        Birthday Event
+                    </label>
+                    @if((categories?.touched || myForm.submitted) && categories?.invalid){
+                    <small>Categories is Requied!!</small>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label>Event Type:</label>
+                    @if(eventDetails && eventDetails.eventType && eventDetails.eventType.length){
+                    @for(typeEvents of eventDetails.eventType;track $index){
+                    <label>
+                        <input type="checkbox" name="typeEvents.name" [(ngModel)]="typeEvents.isSelected">
+                        {{typeEvents.name}}
+                    </label>
+                }
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label>Venue Type:</label>
+                    <label>
+                        <input type="radio" name="venueType" value="indoor" [(ngModel)]="eventDetails.venueType"
+                            required #venueType="ngModel"> Indoor
+                    </label>
+                    <label>
+                        <input type="radio" name="venueType" value="outdoor" [(ngModel)]="eventDetails.venueType"
+                            required> Outdoor
+                    </label>
+                    @if((venueType?.touched || myForm.submitted) && venueType?.invalid){
+                    <small>Venue Type is Requied!!</small>
+                    }
+                </div>
+
+                <div style="font-size: 18px; font-weight: bold; margin: 20px 0 10px 0;">Event Details:</div>
+                <div class="form-group">
+                    <label for="eventname">Event Name:</label>
+                    <input type="text" name="eventDetailsEventName" class="form-control" id="eventname"
+                        placeholder="Enter Your Event Name"
+                        [(ngModel)]="eventDetails.eventDetailsData.eventDetailEventName" #eventDetailEventName="ngModel"
+                        required />
+                    @if((eventDetailEventName.touched || myForm.submitted) &&
+                    eventDetailEventName.errors?.['required']){
+                    <small>Event Details Event Name is Requied!!</small>
+                    }
+                </div>
+                <div class="form-group">
+                    <label for="eventlocation">Event Location:</label>
+                    <input type="text" name="eventDetailsEventLocation" class="form-control" id="eventlocation"
+                        placeholder="Enter Your Event Location"
+                        [(ngModel)]="eventDetails.eventDetailsData.eventDetailEventLocation"
+                        #eventDetailEventLocation="ngModel" required />
+                    @if((eventDetailEventLocation.touched || myForm.submitted) &&
+                    eventDetailEventLocation.errors?.['required']){
+                    <small>Event Details Event Location is Requied!!</small>
+                    }
+                </div>
+                <div class="form-group">
+                    <label for="eventdate">Event Date:</label>
+                    <input type="date" name="eventDetailsEventDate" class="form-control" id="eventdate"
+                        [(ngModel)]="eventDetails.eventDetailsData.eventDetailDate" #eventDate="ngModel" required />
+                    @if((eventDate.touched || myForm.submitted) && eventDate.errors?.['required']){
+                    <small>Event Details eventDate is Requied!!</small>
+                    }
+                </div>
+
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </form>
+        </div>
+
+    </div>
+</main>
