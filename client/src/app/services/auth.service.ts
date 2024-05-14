@@ -11,6 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class AuthService {
 
   isUserLoggedIn:boolean = false;
+  user: any = null;
 
   constructor(private http: HttpClient, private cookieService: CookieService) {
     const token = this.cookieService.get("access_token");
@@ -28,6 +29,12 @@ export class AuthService {
     credentials: 'include',
   };
 
+  // Get a User Details
+  getUser(): Observable<any> {
+    const url = `${this.apiUrl}/user`
+    return this.http.get<any>(url, this.httpOptions);
+  }
+
   login(user: any): Observable<any> {
     const url = `${this.apiUrl}/login`;
     return this.http.post<User>(url, user, this.httpOptions);
@@ -43,8 +50,8 @@ export class AuthService {
     return this.http.delete<any>(url, this.httpOptions);
   }
 
-  setUserLogin(status:boolean){
-    this.isUserLoggedIn = status;
+  setUserStatus(user:any) {
+    this.user = user;
   }
 
   isAuthenticated(): boolean {

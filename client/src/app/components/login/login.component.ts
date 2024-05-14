@@ -47,7 +47,7 @@ export class LoginComponent {
       this.authService.login(user).subscribe({
         next: res => {
           if (res.success) {
-            this.authService.setUserLogin(true);
+            this.authService.setUserStatus(res.data);
             // alert("User Logged in successfully");
             location.href="/";
           }

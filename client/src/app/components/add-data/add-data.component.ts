@@ -4,6 +4,8 @@ import { Event } from '../../Event';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-add-data',
@@ -15,12 +17,29 @@ import { NgFor } from '@angular/common';
 export class AddDataComponent {
 
   public eventDetails:Event=new Event();
-  constructor(private eventService:EventService,private router:Router) { }
+  userName: string = "";
+  constructor(private eventService:EventService,private authService: AuthService, 
+    private router: Router, 
+    private cookieService: CookieService) { }
 
   ngOnInit(): void {
     this.eventDetails=this.eventService.getter();
     this.eventDetails.eventDetailsData.eventDetailDate = this.eventDetails.eventDetailsData.eventDetailDate?.split("T")[0];
     this.geteventType();
+    this.authService.getUser().subscribe({
+      next: res => {
+        if (res.success) {
+          const user = res.data;
+          this.userName = user.first_name + " " + user.last_name;
+        }
+      },
+      error: err => {
+        if (!err.success) {
+          this.cookieService.delete("access_token");
+          this.router.navigate(["/login"]);
+        }
+      }
+    });
   }
 
   geteventType(){

@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Event } from '../../Event';
 import { AuthService } from '../../services/auth.service';
 import { EventService } from '../../services/event.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-header',
@@ -13,21 +14,35 @@ import { EventService } from '../../services/event.service';
 })
 export class HeaderComponent implements OnInit {
 
-  isUserLoggedIn:boolean = false;
+  userName:string="";
 
   constructor(private authService: AuthService, 
     private eventService:EventService,
+    private cookieService: CookieService,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.isUserLoggedIn = this.authService.isAuthenticated();
+    this.authService.getUser().subscribe({
+      next: res => {
+        if (res.success) {
+          const user = res.data;
+          this.userName = user.first_name + " " + user.last_name;
+        }
+      },
+      error: err => {
+        if (!err.success) {
+          this.cookieService.delete("access_token");
+          this.userName = "";
+        }
+      }
+    });
   }
   
   logout() {
     this.authService.logout().subscribe({
       next: (res:any) => {
-        this.isUserLoggedIn = false;
-        this.authService.setUserLogin(false);
+        this.userName = "";
+        this.authService.setUserStatus(null);
         this.router.navigate(["/home-page"]);
       },
       error: (err:any) => {

@@ -23,4 +23,16 @@ export class UserService {
     const url = `${this.apiUrl}/${id = "123456789"}`
     return this.http.get<any>(url, this.httpOptions);
   }
+
+  // Delete a User
+  deleteUser(userId: string): Observable<any> {
+    const url = `${this.apiUrl}/${userId}`;
+    return this.http.delete<any>(url);
+  }
+
+  // Edit a User
+  editUser(user: any): Observable<any> {
+    const url = `${this.apiUrl}/${user._id}`;
+    return this.http.put<any>(url, user, this.httpOptions);
+  }
 }

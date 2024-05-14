@@ -13,6 +13,10 @@ const eventSchema = new mongoose.Schema({
         eventDetailEventName:{type:String,required:true},
         eventDetailEventLocation:{type:String,required:true},
         eventDetailDate:{type: Date, trim: true,required:true},
+    },
+    CreatedBy: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "users"
     }
 })
 

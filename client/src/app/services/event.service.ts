@@ -10,23 +10,29 @@ export class EventService {
 
   public eventDetails:Event=new Event();
   private baseUri:string="http://localhost:5000";
-  private headers=new HttpHeaders().set('Content-Type','application/json');
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    }),
+    withCredentials: true,
+    credentials: 'include',
+  };
   constructor(private router: Router,private http:HttpClient) { }
 
   createEvent(event:Event){
-    return this.http.post(this.baseUri+'/add-data',event,{headers:this.headers});
+    return this.http.post(this.baseUri+'/add-data',event,this.httpOptions);
   }
 
   readEvent(){
-    return this.http.get(this.baseUri+'/display-data',{headers:this.headers});
+    return this.http.get(this.baseUri+'/display-data',this.httpOptions);
   }
 
   updateEvent(event:Event,id:String){
-    return this.http.put(this.baseUri+'/update-data/'+id,event,{headers:this.headers});
+    return this.http.put(this.baseUri+'/update-data/'+id,event,this.httpOptions);
   }
 
   deleteEvent(id:string){
-    return this.http.delete(this.baseUri+'/delete/'+id,{headers:this.headers});
+    return this.http.delete(this.baseUri+'/delete/'+id,this.httpOptions);
   }
 
   setter(event:Event){

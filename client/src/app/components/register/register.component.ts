@@ -44,10 +44,15 @@ export class RegisterComponent implements OnInit {
     if (newUser.password !== this.registerForm.value.confirmPassword)
       return alert("Password doesn't matched");
 
-    this.authService.register(newUser).subscribe(res => {
-      if (res.data) {
-        alert("User registered successfully");
-        this.router.navigate(["/login"]);
+    this.authService.register(newUser).subscribe({
+      next: res => {
+        if (res.data) {
+          alert("User registered successfully");
+          this.router.navigate(["/login"]);
+        }
+      },
+      error: err => {
+        alert(err.error.message);
       }
     });
   }

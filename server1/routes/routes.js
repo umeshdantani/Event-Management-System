@@ -5,9 +5,9 @@ import verifyToken from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
-router.get('/display-data', displayEvent);
+router.get('/display-data',verifyToken, displayEvent);
 
-router.post('/add-data', addEvent);
+router.post('/add-data',verifyToken, addEvent);
 
 router.put('/update-data/:id', updateEvent);
 
@@ -25,6 +25,8 @@ router.put("/api/users/:id", updateUser);
 router.delete("/api/users/:id", deleteUser);
 
 // API - Auth
+
+router.get("/api/auth/user",verifyToken, getUser);
 
 router.post("/api/auth/register", register);
 

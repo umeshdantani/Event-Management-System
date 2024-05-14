@@ -2,7 +2,7 @@ import eventModel from '../models/event.js'
 
 const displayEvent = async (req, res) => {
     try {
-        const result = await eventModel.find()
+        const result = await eventModel.find({ CreatedBy: req.user._id })
         res.status(200).json({ msg: result });
     } catch (error) {
         res.status(500).json({ errmsg: error });
@@ -25,6 +25,7 @@ const addEvent = async (req, res) => {
                 eventDetailEventLocation: eventDetailsData.eventDetailEventLocation,
                 eventDetailDate: eventDetailsData.eventDetailDate
             },
+            CreatedBy:req.user._id
             // fileType: req.file.filename
         });
         // newEvent._id=1;

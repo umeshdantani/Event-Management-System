@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { EventService } from '../../services/event.service';
 import { Router } from '@angular/router';
 import { Event } from '../../Event';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-display-data',
@@ -13,10 +15,25 @@ import { Event } from '../../Event';
 export class DisplayDataComponent {
   public events:Event[]=[];
   public avgAttendeeCount:number=0;
-  constructor(private eventDataService:EventService,private router:Router) { }
+  userName: string = "";
+  constructor(private eventDataService:EventService,private authService: AuthService,private cookieService: CookieService,private router:Router) { }
 
   ngOnInit(): void {
     this.readEvent();
+    this.authService.getUser().subscribe({
+      next: res => {
+        if (res.success) {
+          const user = res.data;
+          this.userName = user.first_name + " " + user.last_name;
+        }
+      },
+      error: err => {
+        if (!err.success) {
+          this.cookieService.delete("access_token");
+          this.router.navigate(["/login"]);
+        }
+      }
+    });
   }
 
     calculateAvgAttendee(){

@@ -3,7 +3,7 @@
         <div class="container-fluid">
           <a routerLink="./" class="navbar-brand">Event Schedular</a>
           <div class="d-flex">
-            @if(isUserLoggedIn){
+            @if(userName){
                 <a routerLink="/" class="btn btn-sm btn-primary mx-2">Home</a>                
                 <a routerLink="/display-data" class="btn btn-sm btn-primary mx-2">Display Event</a>                
                 <a routerLink="/add-data" class="btn btn-sm btn-primary mx-2" (click)="newData($event)">Add Event</a>
