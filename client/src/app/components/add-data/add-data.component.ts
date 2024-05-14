@@ -68,8 +68,6 @@ onSubmit() {
       )
     }
     else{
-    console.log(this.eventDetails.eventType);
-    
       this.eventService.updateEvent(this.eventDetails,this.eventDetails._id).subscribe({
         next:(data)=>{
           console.log(data);

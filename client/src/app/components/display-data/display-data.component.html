@@ -26,9 +26,9 @@
                         <td>{{event.eventType}}</td>
                         <td>{{event.venueType}}</td>
                         <td>
-                            <div>{{event.eventDetailsData.eventDetailDate}}</div>
-                            <div>{{event.eventDetailsData.eventDetailEventName}}</div>
-                            <div>{{event.eventDetailsData.eventDetailEventLocation}}</div>
+                            <div>Organization Name: {{event.eventDetailsData.eventDetailEventName}}</div>
+                            <div>Event Location: {{event.eventDetailsData.eventDetailEventLocation}}</div>
+                            <div>Event Date: {{event.eventDetailsData.eventDetailDate.split("T")[0]}}</div>
                         </td>
                         <td>
                             <button class="btn btn-sm btn-primary mx-2" (click)="doUpdate(event)">

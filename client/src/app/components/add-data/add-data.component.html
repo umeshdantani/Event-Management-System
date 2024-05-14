@@ -64,7 +64,7 @@
                     <label>
                         <input type="radio" name="categories" value="Holi" class="categories"
                             [(ngModel)]="eventDetails.Categories" required>
-                            Holi Event
+                        Holi Event
                     </label>
                     <label>
                         <input type="radio" name="categories" value="Birthday" class="categories"
@@ -84,7 +84,7 @@
                         <input type="checkbox" name="typeEvents.name" [(ngModel)]="typeEvents.isSelected">
                         {{typeEvents.name}}
                     </label>
-                }
+                    }
                     }
                 </div>
 
@@ -105,7 +105,7 @@
 
                 <div style="font-size: 18px; font-weight: bold; margin: 20px 0 10px 0;">Event Details:</div>
                 <div class="form-group">
-                    <label for="eventname">Event Name:</label>
+                    <label for="eventname">Event Organization Name:</label>
                     <input type="text" name="eventDetailsEventName" class="form-control" id="eventname"
                         placeholder="Enter Your Event Name"
                         [(ngModel)]="eventDetails.eventDetailsData.eventDetailEventName" #eventDetailEventName="ngModel"
